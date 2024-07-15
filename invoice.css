@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+#invoice-details {
+    background-color: #fff;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#invoice-details h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#invoice-details p, #invoice-details h3, #invoice-details h4 {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#invoice-details h3 {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+#invoice-details h4 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#invoice-details span {
+    font-weight: bold;
+}
+
+#items-list {
+    margin-bottom: 20px;
+}
+
+#items-list .item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#items-list .item:last-child {
+    border-bottom: none;
+}
+
+#items-list .item .item-name {
+    flex: 2;
+}
+
+#items-list .item .item-quantity, 
+#items-list .item .item-price {
+    flex: 1;
+    text-align: right;
+}

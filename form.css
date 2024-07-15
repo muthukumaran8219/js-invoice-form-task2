@@ -1,0 +1,136 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* .container-custom {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+} */
+
+/* Form Styles */
+.form-group label {
+    font-weight: bold;
+}
+
+#billing-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#billing-form .form-control {
+    margin-bottom: 15px;
+}
+
+/* Table Styles */
+#bill-table {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#bill-table th,
+#bill-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#bill-table th {
+    background-color: #343a40;
+    color: white;
+}
+
+#bill-table tbody tr td input[type="number"] {
+    max-width: 100px;
+    margin: 0 auto;
+}
+
+#bill-table .btn-danger {
+    margin-top: 0;
+}
+
+/* Total Styles */
+.total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: 550px;
+}
+
+.total p,
+.total h4 {
+    margin: 5px 0;
+}
+
+/* Button Styles */
+#add {
+    margin-bottom: 20px;
+}
+
+#save {
+    margin-top: 20px;
+    margin-left: 550px;
+    
+}
+
+/* #can {
+    margin-left: 550px;
+    margin-top: -30px;
+} */
+
+/* Media Queries
+@media (max-width: 768px) {
+    .container-custom {
+        padding: 10px;
+    }
+
+    #bill-table thead {
+        display: none;
+    }
+
+    #bill-table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    #bill-table tbody tr td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    #bill-table tbody tr td::before {
+        content: attr(data-label);
+        font-weight: bold;
+    }
+} */
+#can{
+    margin-top: 20px;
+}
+.gap{
+    gap: 200px;
+}
+.form-control{
+    width: 300px;
+}
+#bill-table{
+    width: 1200px;
+    margin-left: -10px;
+}
+#product{
+    margin-top: 16px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Invoice Details</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="invoice.css">
+</head>
+
+<body>
+	<div id="invoice-details">
+		<h2>Customer Name: <span id="customer-name"></span></h2>
+		<p>Purchase Date: <span id="purchase-date"></span></p>
+		<p>Phone Number: <span id="phone-number"></span></p>
+		<p>Email: <span id="email"></span></p>
+		<p>Address: <span id="address"></span></p>
+		<p>Gender: <span id="gender"></span></p>
+		<h3>Items:</h3>
+		<div id="items-list">
+
+		</div>
+		<h4>Subtotal: $<span id="subtotal"></span></h4>
+		<h4>GST (5%): $<span id="gst"></span></h4>
+		<h4>Discount (10%): $<span id="discount"></span></h4>
+		<h4>Total: $<span id="total"></span></h4>
+	</div>
+
+	<script>
+		// Function to get invoice details and send them via fetch API
+function sendInvoiceDetails() {
+    // Collecting invoice details
+    const invoiceDetails = {
+        customerName: document.getElementById('customer-name').innerText,
+        purchaseDate: document.getElementById('purchase-date').innerText,
+        phoneNumber: document.getElementById('phone-number').innerText,
+        email: document.getElementById('email').innerText,
+        address: document.getElementById('address').innerText,
+        gender: document.getElementById('gender').innerText,
+        items: [], // Assume you have a way to collect items
+        subtotal: parseFloat(document.getElementById('subtotal').innerText),
+        gst: parseFloat(document.getElementById('gst').innerText),
+        discount: parseFloat(document.getElementById('discount').innerText),
+        total: parseFloat(document.getElementById('total').innerText)
+    };
+
+    // Add items to the items array
+    document.querySelectorAll('#items-list .item').forEach(item => {
+        invoiceDetails.items.push({
+            name: item.querySelector('.item-name').innerText,
+            quantity: parseInt(item.querySelector('.item-quantity').innerText),
+            price: parseFloat(item.querySelector('.item-price').innerText)
+        });
+    });
+
+    // Sending the data to the server using fetch API
+    fetch('https:/api/invoice/buy/product', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(invoiceDetails)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+// Example of calling the function
+sendInvoiceDetails();
+
+	</script>
+</body>
+
+</html>
