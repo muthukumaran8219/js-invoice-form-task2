@@ -8,22 +8,15 @@ body {
     overflow-x: hidden;
 }
 
-header {
+header{
     background-color: #343a40;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    margin-left: 250px;
+    margin-right: 249px;
+    margin-top: 30px;
 }
 
-/* .container-custom {
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
-} */
-
-/* Form Styles */
 .form-group label {
     font-weight: bold;
 }
@@ -31,17 +24,20 @@ header {
 #billing-form {
     max-width: 800px;
     margin: 0 auto;
+    margin-top: 50px;
 }
 
 #billing-form .form-control {
     margin-bottom: 15px;
 }
 
-/* Table Styles */
 #bill-table {
-    width: 100%;
+    width: 850px;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: -40px;
+    margin-right: 120px;
+    border: 1px solid;
 }
 
 #bill-table th,
@@ -79,45 +75,15 @@ header {
 /* Button Styles */
 #add {
     margin-bottom: 20px;
+    margin-left: -40px;
+    margin-top: 20px;
 }
 
 #save {
-    margin-top: 20px;
-    margin-left: 550px;
-    
+    margin-top: 30px;
+    margin-left: 550px;    
 }
 
-/* #can {
-    margin-left: 550px;
-    margin-top: -30px;
-} */
-
-/* Media Queries
-@media (max-width: 768px) {
-    .container-custom {
-        padding: 10px;
-    }
-
-    #bill-table thead {
-        display: none;
-    }
-
-    #bill-table tbody tr {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    #bill-table tbody tr td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-    }
-
-    #bill-table tbody tr td::before {
-        content: attr(data-label);
-        font-weight: bold;
-    }
-} */
 #can{
     margin-top: 20px;
 }
@@ -127,10 +93,27 @@ header {
 .form-control{
     width: 300px;
 }
-#bill-table{
-    width: 1200px;
-    margin-left: -10px;
-}
+
 #product{
     margin-top: 16px;
+}
+.f-btn{
+    margin-bottom: 50px;
+    gap: 5px;
+}
+.mainform{
+    gap: 170px;
+}
+
+#first-form{
+    border: 1px solid;
+    width: 850px;
+    margin-left: -25px;
+    padding: 40px;
+    margin-top: -50px;
+    background-color: #dadada;
+}
+#final-bill{
+    /* border: 1px solid; */
+
 }

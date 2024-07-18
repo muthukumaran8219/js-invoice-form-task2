@@ -10,7 +10,6 @@ var products = [
 function addRow() {
     var table = document.getElementById("bill-table").getElementsByTagName('tbody')[0];
     var row = table.insertRow();
-
     var productCell = row.insertCell();
     var quantityCell = row.insertCell();
     var priceCell = row.insertCell();
