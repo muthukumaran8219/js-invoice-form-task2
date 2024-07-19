@@ -60,7 +60,6 @@ header{
     margin-top: 0;
 }
 
-/* Total Styles */
 .total {
     font-size: 1.2em;
     font-weight: bold;
@@ -72,7 +71,6 @@ header{
     margin: 5px 0;
 }
 
-/* Button Styles */
 #add {
     margin-bottom: 20px;
     margin-left: -40px;
@@ -114,6 +112,15 @@ header{
     background-color: #dadada;
 }
 #final-bill{
-    /* border: 1px solid; */
-
+    margin-left: 550px;
+}
+#can-btn{
+    margin-top: -58px;
+    margin-left: 650px;
+}
+#btns{
+    margin-bottom: 50px;
+}
+#table2{
+    column-gap: 100px;
 }

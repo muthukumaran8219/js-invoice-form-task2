@@ -10,6 +10,7 @@ var products = [
 function addRow() {
     var table = document.getElementById("bill-table").getElementsByTagName('tbody')[0];
     var row = table.insertRow();
+
     var productCell = row.insertCell();
     var quantityCell = row.insertCell();
     var priceCell = row.insertCell();
@@ -58,7 +59,7 @@ function calculateAmount(row) {
     if (quantity && price) {
         totalAmount.value = quantity * price;
     } else {
-        totalAmount .value = 0;
+        totalAmount.value = 0;
     }
     calculateTotal();
 }
@@ -80,16 +81,8 @@ function calculateTotal() {
 }
 
 function addEventListeners() {
-    var quantityInputs = document.querySelectorAll('input[name="quantity[]"]');
-    var priceInputs = document.querySelectorAll('input[name="price[]"]');
-
+    var quantityInputs = document.querySelectorAll('input[name="quantity"]');
     quantityInputs.forEach(input => {
-        input.addEventListener('input', function() {
-            calculateAmount(this.parentElement.parentElement);
-        });
-    });
-
-    priceInputs.forEach(input => {
         input.addEventListener('input', function() {
             calculateAmount(this.parentElement.parentElement);
         });
@@ -101,69 +94,65 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function handleSubmit(event) {
-event.preventDefault();
+    event.preventDefault();
+    const customerName = document.getElementById('customerName').value;
+    const email = document.getElementById('email').value;
+    const mobileNo = document.getElementById('mobileNo').value;
+    const address = document.getElementById('address').value;
+    const gender = document.getElementById('gender').value;
 
+   
+    const productRows = document.querySelectorAll('#bill-table tbody tr');
+    const customerProduct = [];
+    productRows.forEach(row => {
+        const productName = row.querySelector('select[name="productName"]').value;
+        const quantity = row.querySelector('input[name="quantity"]').value;
+        const price = row.querySelector('input[name="price"]').value;
+        const totalAmount = row.querySelector('input[name="totalAmount"]').value;
+        customerProduct.push({ productName, quantity, price, totalAmount });
+    });
 
+    // Create the payload
+    const payload = {
+        customerName,
+        email,
+        mobileNo,
+        address,
+        gender,
+        customerProduct
+    };
+    console.log(payload);
 
-// Gather data from form elements
-const customerName = document.getElementById('customerName').value;
-const email = document.getElementById('email').value;
-const mobileNo = document.getElementById('mobileNo').value;
-const address = document.getElementById('address').value;
-const gender = document.getElementById('gender').value;
-
-// Get product data from the table
-const productRows = document.querySelectorAll('#bill-table tbody tr');
-const customerProduct = [];
-productRows.forEach(row => {
-const productName = row.querySelector('select[name="productName"]').value;
-const quantity = row.querySelector('input[name="quantity"]').value;
-const price = row.querySelector('input[name="price"]').value;
-const totalAmount = row.querySelector('input[name="totalAmount"]').value;
-customerProduct.push({ productName, quantity, price, totalAmount });
-});
-
-// Create the payload
-const payload = {
-customerName,
-email,
-mobileNo,
-address,
-gender,
-customerProduct
-};
-console.log(payload);
-
-// Send the POST request
-fetch('http://localhost:8080/api/invoice/buy/product', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/json'
-},
-body: JSON.stringify(payload)
-})
-.then(response => {
-if (!response.ok) {
-return response.json().then(data => {
-throw new Error(`API Error: ${data.error.code} - ${data.error.reason}`);
-});
-}
-return response.json();
-})
-.then(data => {
-console.log('Success:', data);
-// Handle successful response, e.g., display a success message
-alert('Order placed successfully!');
-})
-.catch(error => {
-console.error('Error:', error);
-// Handle error, e.g., display an error message
-if (error.message.includes('409 CONFLICT')) {
-alert('Conflict occurred. Please check your data for duplicates or inconsistencies.');
-} else if (error.message.includes('400 BAD_REQUEST')) {
-alert('Invalid data. Please check your inputs.');
-} else {
-alert('An error occurred. Please try again later.');
-}
-});
+    // Send the POST request
+    fetch('http://localhost:8080/api/invoice/buy/product', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(`API Error: ${data.error.code} - ${data.error.reason}`);
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Success:', data);
+        // Handle successful response, e.g., display a success message
+        alert('Order placed successfully!');
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error, e.g., display an error message
+        if (error.message.includes('409 CONFLICT')) {
+            alert('Conflict occurred. Please check your data for duplicates or inconsistencies.');
+        } else if (error.message.includes('400 BAD_REQUEST')) {
+            alert('Invalid data. Please check your inputs.');
+        } else {
+            alert('An error occurred. Please try again later.');
+        }
+    });
 }
