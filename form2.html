@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="form2.css">
+    <script src="form2.js"></script>
 </head>
 <body>
-    <form class="form">
+    <form class="form" onclick=" handleSubmit(event) ">
         <h2>PRODUCT</h2>
         <div class="name">
             <label>Product Name</label>
@@ -18,7 +19,7 @@
             <input type="text" id="qty">
         </div>
         <div class="Price">
-            <label>User Name</label>
+            <label>Price</label>
             <input type="text" id="Price">
         </div>
         <button type="submit">Add Product</button>

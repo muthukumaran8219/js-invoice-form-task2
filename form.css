@@ -1,4 +1,4 @@
-
+/* 
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -123,4 +123,31 @@ header{
 }
 #table2{
     column-gap: 100px;
+} */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+.mainheading{
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+    color: white;
+}
+.tableheading{
+    /* background: radial-gradient(circle at 10% 20%, rgb(69, 86, 102) 0%, rgb(34, 34, 34) 90%); */
+    background-color: #240747;
+    color: white;
+    font-size: 20px;
+}
+.page1{
+    /* background-color:#ffcab0; */
+    /* padding-left: 10px; */ 
+}
+.lastbtn{
+    /* margin-left: 860px; */
+    margin-right: 100px;
+}
+.total{
+    margin-right: 120px;
 }

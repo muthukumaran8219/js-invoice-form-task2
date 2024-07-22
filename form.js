@@ -9,13 +9,16 @@ var products = [
 
 function addRow() {
     var table = document.getElementById("bill-table").getElementsByTagName('tbody')[0];
+    var rowCount = table.rows.length;
     var row = table.insertRow();
-
+    var slCell = row.insertCell();
     var productCell = row.insertCell();
     var quantityCell = row.insertCell();
     var priceCell = row.insertCell();
     var amountCell = row.insertCell();
     var actionCell = row.insertCell();
+
+    slCell.textContent = rowCount + 1;
 
     var productSelect = document.createElement("select");
     productSelect.className = "form-control";
@@ -42,6 +45,7 @@ function addRow() {
 function deleteRow(button) {
     var row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);
+    updateRowNumbers();
     calculateTotal();
 }
 
@@ -93,6 +97,13 @@ document.addEventListener('DOMContentLoaded', function() {
     addEventListeners();
 });
 
+function updateRowNumbers() {
+    var table = document.getElementById("bill-table").getElementsByTagName('tbody')[0];
+    for (var i = 0; i < table.rows.length; i++) {
+        table.rows[i].cells[0].textContent = i + 1;
+    }
+}
+
 function handleSubmit(event) {
     event.preventDefault();
     const customerName = document.getElementById('customerName').value;
@@ -101,7 +112,6 @@ function handleSubmit(event) {
     const address = document.getElementById('address').value;
     const gender = document.getElementById('gender').value;
 
-   
     const productRows = document.querySelectorAll('#bill-table tbody tr');
     const customerProduct = [];
     productRows.forEach(row => {
