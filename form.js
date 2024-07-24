@@ -34,12 +34,10 @@ function addRow() {
     });
 
     productCell.appendChild(productSelect);
-    quantityCell.innerHTML = '<input type="number" class="form-control" name="quantity" placeholder="Enter quantity" required>';
+    quantityCell.innerHTML = '<input type="number" class="form-control" name="quantity" placeholder="Enter quantity" onchange="calculateAmount(this.parentElement.parentElement)">';
     priceCell.innerHTML = '<input type="number" class="form-control" name="price" readonly>';
     amountCell.innerHTML = '<input type="number" class="form-control" name="totalAmount" readonly>';
     actionCell.innerHTML = '<button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>';
-
-    addEventListeners();
 }
 
 function deleteRow(button) {
@@ -106,13 +104,69 @@ function updateRowNumbers() {
 
 function handleSubmit(event) {
     event.preventDefault();
+    var isValid = true;
+
+    // Clear previous errors
+    document.querySelectorAll('.error').forEach(function(el) {
+        el.textContent = '';
+    });
+
+    // Validation checks
     const customerName = document.getElementById('customerName').value;
-    const email = document.getElementById('email').value;
+    const purchaseDate = document.getElementById('purchase-date').value;
     const mobileNo = document.getElementById('mobileNo').value;
+    const email = document.getElementById('email').value;
     const address = document.getElementById('address').value;
     const gender = document.getElementById('gender').value;
 
+    if (!customerName) {
+        document.getElementById('customerNameError').textContent = 'Customer name is required.';
+        isValid = false;
+    }
+
+    if (!purchaseDate) {
+        document.getElementById('purchaseDateError').textContent = 'Purchase date is required.';
+        isValid = false;
+    }
+
+    if (!mobileNo) {
+        document.getElementById('mobileNoError').textContent = 'Mobile number is required.';
+        isValid = false;
+    }
+
+    if (!email) {
+        document.getElementById('emailError').textContent = 'Email is required.';
+        isValid = false;
+    }
+
+    if (!address) {
+        document.getElementById('addressError').textContent = 'Address is required.';
+        isValid = false;
+    }
+
+    if (!gender) {
+        document.getElementById('genderError').textContent = 'Gender is required.';
+        isValid = false;
+    }
+
     const productRows = document.querySelectorAll('#bill-table tbody tr');
+    productRows.forEach(row => {
+        const productName = row.querySelector('select[name="productName"]').value;
+        const quantity = row.querySelector('input[name="quantity"]').value;
+        const quantityError = row.querySelector('.quantityError');
+        const productNameError = row.querySelector('.productNameError');
+        if (!productName || productName === 'Select a product') {
+            productNameError.textContent = 'Product is required.';
+            isValid = false;
+        }
+        if (!quantity || quantity <= 0) {
+            quantityError.textContent = 'Quantity must be greater than zero.';
+            isValid = false;
+        }
+    });
+
+    if (!isValid) return;
+
     const customerProduct = [];
     productRows.forEach(row => {
         const productName = row.querySelector('select[name="productName"]').value;
@@ -123,7 +177,9 @@ function handleSubmit(event) {
     });
 
     // Create the payload
+
     const payload = {
+        
         customerName,
         email,
         mobileNo,
