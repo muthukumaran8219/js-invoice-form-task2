@@ -26,3 +26,11 @@
 .list{
     margin-left: 15px;
 }
+
+.alert{
+    margin-right: 420px;
+    background-color: white;
+    color: red;
+    border: none;
+    margin-top: -15px;
+}
