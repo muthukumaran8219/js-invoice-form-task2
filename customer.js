@@ -264,7 +264,7 @@ async function handleSubmit(event) {
 
         // Handle successful response
         alert('Order placed successfully!');
-        // window.location.href = "table.html";
+        window.location.href = "customerlist.html";
     } catch (error) {
         console.error('Error:', error);
 
