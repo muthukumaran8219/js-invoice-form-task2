@@ -12,8 +12,8 @@
      <script src="customer.js"></script>
  </head>
  <body>
-     <div class="container">
-         <header class="container mainheading m-3 text-center hd p-3">
+     <div class="container hd1">
+         <header class="container mainheading mt-5 text-center hd p-3">
              <h1>Shopping Bill Generator</h1>
          </header>
      </div>
@@ -23,19 +23,19 @@
              <div class="container-custom page1 mt-5">
                  <div class="form-row">
                      <div class="form-group col-md-6">
-                         <label for="customerName">Customer Name</label>
+                         <label for="customerName">Customer Name *</label>
                          <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter customer name">
                          <span  class="error" id="customerNameError"></span>
                      </div>
                      <div class="form-group col-md-6">
                          <label for="purchase-date">Purchase Date</label>
                          <input type="date" class="form-control" id="purchase-date" name="purchase-date">
-                         <span  class="error" id="purchaseDateError"></span>
+                         <!-- <span  class="error" id="purchaseDateError"></span> -->
                      </div>
                  </div>
                  <div class="form-row">
                      <div class="form-group col-md-6">
-                         <label for="mobileNo">Phone Number</label>
+                         <label for="mobileNo">Phone Number *</label>
                          <input type="number" class="form-control" id="mobileNo" name="mobileNo" placeholder="Enter your phone number">
                          <span  class="error" id="mobileNoError"></span>
                      </div>
@@ -47,7 +47,7 @@
                  </div>
                  <div class="form-row">
                      <div class="form-group col-md-6">
-                         <label for="address">Address</label>
+                         <label for="address">Address *</label>
                          <textarea class="form-control" id="address" name="address" placeholder="Enter your current address"></textarea>
                          <span  class="error" id="addressError"></span>
                      </div>

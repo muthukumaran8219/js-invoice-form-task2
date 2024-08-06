@@ -529,10 +529,10 @@ async function handleSubmit(event) {
         isValid = false;
     }
 
-    if (!purchaseDate) {
-        document.getElementById('purchaseDateError').textContent = 'Purchase date is required.';
-        isValid = false;
-    }
+    // if (!purchaseDate) {
+    //     document.getElementById('purchaseDateError').textContent = 'Purchase date is required.';
+    //     isValid = false;
+    // }
 
     if (!mobileNo || !/^\d+$/.test(mobileNo)) {
         document.getElementById('mobileNoError').textContent = 'Mobile number is required.';

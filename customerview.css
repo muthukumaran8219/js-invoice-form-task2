@@ -1,9 +1,137 @@
-.invoice{
-    padding: 30px 0;
-    background-color: #fff6f6;
-  }
-  
+body{
+  font-family: 'Times New Roman', Times, serif;
+
+}
+.container {
+  margin-top: 3rem;
+  padding: 2rem;
+  margin-left: 80px;
+  margin-right: 80px;
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.invoice-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.invoice-header h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #343a40;
+}
+
+.invoice-details {
+  margin-bottom: 2rem;
+} 
+
+/* .newcolumn {
+  display: flex;
+  justify-content: space-between;
+}  */
+
+/* .newcolumn div {
+  width: 48%;
+} */
+
+.ctr, .pur, .ph, .eml, .gdr, .ads {
+  font-size: 1rem;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+.ctr strong, .pur strong, .ph strong, .eml strong, .gdr strong, .ads strong {
+  color: #343a40;
+}
+
+.ctr span, .pur span, .ph span, .eml span, .gdr span, .ads span {
+  color: black;
+}
+
+.cd {
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* margin-top: 2rem; */
+  color: #343a40;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.table-bordered {
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  border: 1px solid #dee2e6;
+}
+
+.table-bordered th, .table-bordered td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+.pqpt {
+  background-color: #f2f2f2;
+}
+
+.tdtdtd tr td {
+  text-align: center;
+}
+
+.total-section {
+  margin-top: 2rem;
+  font-size: 1rem;
+}
+
+.total-section p {
+  margin-bottom: 0.5rem;
+}
+
+.total-section strong {
+  color: #343a40;
+}
+
+.total-section span {
+  color: black ;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #6c757d;
+} 
+
+ .maindiv{
+  background-color:#b6e1e0;
+}
+.eml{
+  margin-left: 130%;
+  margin-top: -100px;
+}
+.gdr{
+  margin-left: 130%;
+}
+.ads{
+  margin-left: 130%;
+}
+.ctr{
+  margin-left: 100px;
+}
+.pur{
+  margin-left: 100px;
+}
+.ph{
+  margin-left: 100px;
+}
+
+
+
+/* 
   .invoice-content{
+    padding: 30px 0;
+    background-color: cornflowerblue;
     font-family: 'Poppins', sans-serif;
     color: #535353;
     font-size: 14px;
@@ -24,7 +152,8 @@
   .invoice-id{
     border-radius: 75px 0 0 75px;
     z-index: 0;
-    background-image:  linear-gradient(to bottom, #ff0000, #ff8100);;
+    background-image:  linear-gradient(to bottom, #ff0000, #ff8100);
+    
   }
   .info{
     max-width: 200px;
@@ -60,7 +189,7 @@
     color: #262525;
     font-weight: 500;
   }
-  .invoice-addr{
+  .invoice-details{
     font-size: 14px;
     margin-bottom: 20px;
     line-height: 23px;
@@ -112,4 +241,4 @@
       border-radius: 15px 0 0 15px;
       z-index: 0;
       background-image: linear-gradient(to bottom, #ff0000, #ff8100);
-  }
+  } */
