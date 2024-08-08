@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 actionCell.appendChild(viewButton);
             
-                    const editButton = document.createElement('button');
-                    editButton.textContent = 'Edit';
-                    editButton.className = 'btn btn-secondary ml-2';
-                    editButton.onclick = () => {
-                        localStorage.setItem('editCustomer', JSON.stringify(item));
-                        window.location.href = 'customer.html';
-                    };
-                    actionCell.appendChild(editButton);
+                    // const editButton = document.createElement('button');
+                    // editButton.textContent = 'Edit';
+                    // editButton.className = 'btn btn-secondary ml-2';
+                    // editButton.onclick = () => {
+                        // localStorage.setItem('editCustomer', JSON.stringify(item));
+                        // window.location.href = 'customer.html';
+                    // };
+                    // actionCell.appendChild(editButton);
 
                 row.appendChild(actionCell);
                 tableBody.appendChild(row);
