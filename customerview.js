@@ -1,3 +1,4 @@
+// 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const customerEmail = urlParams.get('email');
@@ -24,11 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('gender').textContent = customerData.gender;
 
       const itemsList = document.getElementById('items-list');
-itemsList.innerHTML = '';
+      itemsList.innerHTML = '';
+
+let rowCounter = 1; 
 
 if (Array.isArray(customerData.customerProducts) && customerData.customerProducts.length > 0) {
     customerData.customerProducts.forEach(item => {
         const rowElement = document.createElement('tr');
+
+        const serialNoElement = document.createElement('td'); 
+        serialNoElement.textContent = rowCounter++; 
+        rowElement.appendChild(serialNoElement);
 
         const productNameElement = document.createElement('td');
         productNameElement.textContent = item.productName;
@@ -52,12 +59,10 @@ if (Array.isArray(customerData.customerProducts) && customerData.customerProduct
     const rowElement = document.createElement('tr');
     const noItemsElement = document.createElement('td');
     noItemsElement.textContent = 'No items available';
-    noItemsElement.colSpan = 4; 
+    noItemsElement.colSpan = 5; 
     rowElement.appendChild(noItemsElement);
     itemsList.appendChild(rowElement);
 }
-
-
                 document.getElementById('subtotal').textContent = invoiceData.totalprouctsAmount.toFixed(2);
                 document.getElementById('gst').textContent = invoiceData.gstAmount.toFixed(2);
                 document.getElementById('discount').textContent = invoiceData.discountAmount.toFixed(2);
@@ -71,4 +76,10 @@ if (Array.isArray(customerData.customerProducts) && customerData.customerProduct
         document.getElementById('invoice-details').textContent = 'No customer email provided';
     }
 });
+
+
+
+
+
+
 

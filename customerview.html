@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
@@ -9,42 +9,38 @@
      <script src="customerview.js"></script>
     </head>
  <body>
-     <div class="container maindiv">
+     <div class="container mt-5">
          <div class="row">
              <div class="col-12">
                  <div class="invoice-header">
-                     <h1 class="invo text-dark p-3">INVOICE</h1>
+                     <h1>INVOICE</h1>
                  </div>
              </div>
          </div>
-         <h5 style="font-family: 'Times New Roman', Times, serif;" class="cd">Customer Details</h5>
          <div class="row invoice-details">
              <div class="col-6">
-              <div class="newcolumn">
-                <div class="col1">
-                  <p style="font-size: 18px;" class="ctr"><strong>Name:</strong> <span id="customerName"></span></p> 
-                  <p style="font-size: 18px;" class="pur"><strong>Date:</strong> <span id="date"></span></p>
-                  <p style="font-size: 18px;" class="ph"><strong>Number:</strong> <span id="mobileNo"></span></p> 
-                </div>
-                <div class="col2">
-                  <p style="font-size: 18px;" class="eml"><strong>Email:</strong> <span id="email" ></span></p>
-                  <p style="font-size: 18px;" class="gdr"><strong>Gender:</strong> <span id="gender" ></span></p>
-                  <p style="font-size: 18px;" class="ads"><strong>Address:</strong> <span id="address" ></span></p> 
-                </div>
-              </div>
-                 <h5 class="cd">Product Details</h5>
+                 <h5 class="cd">Customer Details</h5>
+                 <p class="ctr"><strong>Customer Name:</strong> <span id="customerName"></span></p>
+                 <p class="pur"><strong>Purchase Date:</strong> <span id="date"></span></p>
+                 <p class="ph"><strong>Phone Number:</strong> <span id="mobileNo"></span></p>
+                 <p class="eml"><strong>Email:</strong> <span id="email" ></span></p>
+                 <p class="gdr"><strong>Gender:</strong> <span id="gender" ></span></p>
+                 <p class="ads"><strong>Address:</strong> <span id="address" ></span></p>
+                
              </div>
             
          </div>
          <div class="row invoice-summary">
              <div class="col-12">
-                 <table class="table table-bordered text-center">
+                <h5 class="cd">Product Details</h5>
+                 <table class="table table-bordered">
                     <thead>
                         <tr class="pqpt">
-                            <th style="background-color: #61c0bf;">PRODUCTS</th>
-                            <th style="background-color:#61c0bf;">QTY</th>
-                            <th style="background-color: #61c0bf;">PRICE</th>
-                            <th style="background-color: #61c0bf;">TOTAL</th>
+                            <th>sl</th>
+                            <th>PRODUCTS</th>
+                            <th>QTY</th>
+                            <th>PRICE</th>
+                            <th>TOTAL</th>
                         </tr>
                     </thead>
                      <tbody id="items-list" class="tdtdtd">
@@ -67,146 +63,8 @@
          </div>
          <div class="row footer">
              <div class="col-12">
-                 <h3 class="footer">Thank you visit again</h3>
+                 <p class="footer">Thank you for purchase!</p>
             </div>
          </div>
  </body>
- </html> -->
-
-
-  
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Favicon icon -->
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon" >
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Details</title>
-    <link rel="stylesheet" href="customerview.css">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
-    <script src="customerview.js"></script>
-</head>
-<body>
-
-    <!-- Invoice 2 start -->
-    <div class=" invoice-2 invoice-content">
-        <div class="container c-border">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="invoice-inner clearfix">
-                        <div class="invoice-info clearfix" id="invoice_wrapper">
-                            <div class="invoice-headar">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="invoice-logo">
-                                            <!-- logo started -->
-                                            <div class="logo">
-                                                <h3 style="text-align: center; color: white;">CUSTOMER BILL</h3>
-                                            </div>
-                                            <!-- logo ended -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="invoice-id">
-                                            <div class="info">
-                                                <!-- <h1 class="inv-header-1">Invoice</h1> -->
-                                                <p class="mb-1">Invoice Number: <span>#45613</span></p>
-                                                <p class="mb-0">Invoice Date: <span>24 Jan 2022</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-top">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="invoice-number mb-30">
-                                         
-                                            <p style="font-size: 18px;" class="ctr"><strong>Name:</strong> <span id="customerName"></span></p> 
-                                            <p style="font-size: 18px;" class="pur"><strong>Date:</strong> <span id="date"></span></p>
-                                            <p style="font-size: 18px;" class="ph"><strong>Number:</strong> <span id="mobileNo"></span></p> 
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="invoice-number mb-30">
-                                            <div class="invoice-number-inner">
-                                       
-                                                <p style="font-size: 18px;" class="eml"><strong>Email:</strong> <span id="email" ></span></p>
-                                                <p style="font-size: 18px;" class="gdr"><strong>Gender:</strong> <span id="gender" ></span></p>
-                                                <p style="font-size: 18px;" class="ads"><strong>Address:</strong> <span id="address" ></span></p> 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-center">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr class="pqpt">
-                                                <th style="background-color: #61c0bf;">PRODUCTS</th>
-                                                <th style="background-color: #61c0bf;">QTY</th>
-                                                <th style="background-color: #61c0bf;">PRICE</th>
-                                                <th style="background-color: #61c0bf;">TOTAL</th>
-                                            </tr>
-                                        </thead>
-                                         <tbody id="items-list" class="tdtdtd">
-                                             <tr >
-                                                 <td ></td>
-                                                 <td></td>
-                                                 <td></td>
-                                                 <td></td>
-                                             </tr>
-                                            </tbody>
-                                     </table>
-                                     
-                                </div>
-                                <div class="text-right">
-                                    <p><strong>Subtotal :</strong> Rs.<span id="subtotal"></span></p>
-                                    <p class="tsg"><strong>GST (5%) :</strong> Rs.<span id="gst"></span> </p>
-                                    <p class="dis"><strong>Discount (10%) :</strong> Rs.<span id="discount"></span></p>
-                                    <p class="tot text-primary"><strong>Grand Total :</strong> Rs.<span id="total"></span></p>
-                                </div>
-                                
-                            </div>
-                            <div class="invoice-bottom">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-5 col-sm-5">
-                                        <div class="payment-method mb-30">
-                                            <h3 class="inv-title-1">Payment Method</h3>
-                                            <ul style="font-size: 20px;" class="payment-method-list-1 text-14">
-                                                <li><strong>Account No:</strong> 00 123 647 840</li>
-                                                <li style="font-size: 18px;"><strong>Account Name:</strong> Jhon Doe</li>
-                                                <li style="font-size: 18px;"><strong>Branch Name:</strong> xyz</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-7 col-sm-7">
-                                        <div class="terms-conditions mb-30">
-                                            <h3 class="inv-title-1">Terms &amp; Conditions</h3>
-                                            <p style="font-size: 18px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="invoice-contact clearfix">
-                                <div class="row g-3">
-                                    <div class="col-sm-12">
-                                        <div class="contact-info clearfix">
-                                            <a href="tel:+55-4XX-634-7071" class="d-flex"><i class="fa fa-phone"></i> +00 123 647 840</a>
-                                            <a href="tel:info@themevessel.com" class="d-flex"><i class="fa fa-envelope"></i> info@themevessel.com</a>
-                                            <a href="tel:info@themevessel.com" class="mr-0 d-flex d-none-580"><i class="fa fa-map-marker"></i> 169 Teroghoria, Bangladesh</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-               
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+ </html> 

@@ -1,9 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('billing-form').addEventListener('submit', handleSubmit);
-    addEventListeners();
-    validateRows();
-});
-let dataArray = []; 
+let dataArray = [];
 
 function fetchData() {
     fetch("http://localhost:8080/api/product/get/All/product")
@@ -30,25 +25,26 @@ function addRow() {
     const rowCount = table.rows.length;
     const row = table.insertRow();
 
-    row.innerHTML = `
-        <td>${rowCount + 1}</td>
+    row.innerHTML = 
+        `<td>${rowCount + 1}</td>
         <td>
-            <select class="form-control" name="productName" onchange="setPrice(this); calculateAmount(this.parentElement.parentElement); validateRows();">
+            <select class="form-control box" name="productName" onchange="setPrice(this);">
                 <option value="" data-price="0">Select a product</option>
             </select>
             <span class="error productNameError"></span>
         </td>
         <td>
-            <input type="number" class="form-control" name="quantity" placeholder="Enter quantity" onchange="calculateAmount(this.parentElement.parentElement); validateRows();">
+            <input type="number" class="form-control box" name="quantity" placeholder="Enter quantity">
             <span class="error quantityError"></span>
         </td>
-        <td><input type="number" class="form-control" name="price" readonly></td>
-        <td><input type="number" class="form-control" name="totalAmount" readonly></td>
+        <td><input type="number" class="form-control box" name="price" readonly></td>
+        <td><input type="number" class="form-control box" name="totalAmount" readonly></td>
         <td>
-            <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
-        </td>
-    `;
+            <button type="button" class="btn btn-danger dlbox" onclick="deleteRow(this)">Delete</button>
+        </td>`
+    ;
     populateDropdown(row.querySelector("select"));
+    addEventListeners(row);
     validateRows();
 }
 
@@ -70,6 +66,34 @@ function populateDropdowns() {
     document.querySelectorAll("select[name='productName']").forEach(populateDropdown);
 }
 
+function validateRow(inputElement) {
+    const row = inputElement.closest("tr");
+    const productSelect = row.querySelector('select[name="productName"]');
+    const quantityInput = inputElement;
+    const quantity = parseFloat(quantityInput.value);
+    const quantityError = row.querySelector('.quantityError');
+    const productNameError = row.querySelector('.productNameError');
+
+    quantityError.textContent = '';
+    productNameError.textContent = '';
+
+    if (productSelect.value && quantityInput.value) {
+        const selectedOption = productSelect.options[productSelect.selectedIndex];
+        const stock = parseFloat(selectedOption.getAttribute("data-stock"));
+        
+        if (quantity > stock) {
+            quantityError.textContent = `Only ${stock} units available.`;
+            quantityInput.value = ''; // Optionally clear the input if exceeds stock
+        } else {
+            quantityError.textContent = '';
+        }
+
+        calculateAmount(row);
+        validateRows();
+    }
+}
+
+
 function validateRows() {
     const rows = document.querySelectorAll('#bill-table tbody tr');
     let isValid = true;
@@ -90,45 +114,47 @@ function validateRows() {
             isValid = false;
         }
     });
-
-    const lastRow = rows[rows.length - 1];
-    if (lastRow) {
-        const productSelect = lastRow.querySelector('select[name="productName"]').value;
-        const quantityInput = lastRow.querySelector('input[name="quantity"]').value;
-        isValid = productSelect && productSelect !== 'Select a product' && quantityInput && quantityInput > 0;
-    }
+   
 
     document.getElementById('add').disabled = !isValid;
 }
 
 function deleteRow(button) {
-    const row = button.closest("tr");
-    row.parentNode.removeChild(row);
-    updateRowNumbers();
-    calculateTotals();
-    validateRows(); 
+    const row = button.parentElement.parentElement;
+    row.parentElement.removeChild(row);
+    updateTotals();
 }
 
 function setPrice(selectElement) {
     const selectedOption = selectElement.options[selectElement.selectedIndex];
-    const price = selectedOption.getAttribute("data-price") || 0;
+    const price = parseFloat(selectedOption.getAttribute("data-price"));
     const row = selectElement.closest("tr");
-    row.querySelector("input[name='price']").value = price;
+    row.querySelector('input[name="price"]').value = price.toFixed(2);
     calculateAmount(row);
 }
 
 function calculateAmount(row) {
-    const quantity = row.querySelector("input[name='quantity']").value;
-    const price = row.querySelector("input[name='price']").value;
-    const totalAmount = quantity * price;
-    row.querySelector("input[name='totalAmount']").value = totalAmount.toFixed(2);
-    calculateTotals();
+    const quantity = parseFloat(row.querySelector('input[name="quantity"]').value);
+    const price = parseFloat(row.querySelector('input[name="price"]').value);
+    const totalAmount = row.querySelector('input[name="totalAmount"]');
+
+    if (!isNaN(quantity) && !isNaN(price)) {
+        totalAmount.value = (quantity * price).toFixed(2);
+    } else {
+        totalAmount.value = '';
+    }
+    updateTotals();
 }
 
-function calculateTotals() {
+function updateTotals() {
+    const rows = document.querySelectorAll("#bill-table tbody tr");
     let subtotal = 0;
-    document.querySelectorAll("input[name='totalAmount']").forEach((input) => {
-        subtotal += parseFloat(input.value) || 0;
+
+    rows.forEach((row) => {
+        const totalAmount = parseFloat(row.querySelector('input[name="totalAmount"]').value);
+        if (!isNaN(totalAmount)) {
+            subtotal += totalAmount;
+        }
     });
 
     const gst = subtotal * 0.05;
@@ -147,27 +173,28 @@ function updateRowNumbers() {
     });
 }
 
-function addEventListeners() {
-    document.querySelectorAll('input[name="quantity"]').forEach(input => {
-        input.addEventListener('input', function() {
-            calculateAmount(this.parentElement.parentElement);
-            validateRows();
-        });
+function addEventListeners(row) {
+    const quantityInput = row.querySelector('input[name="quantity"]');
+    const productSelect = row.querySelector('select[name="productName"]');
+
+    quantityInput.addEventListener('input', function() {
+        calculateAmount(row);
+        validateRows();
     });
 
-    document.querySelectorAll('select[name="productName"]').forEach(select => {
-        select.addEventListener('change', function() {
-            setPrice(this);
-            calculateAmount(this.parentElement.parentElement);
-            validateRows();
-        });
+    productSelect.addEventListener('change', function() {
+        setPrice(this);
+        calculateAmount(row);
+        validateRows();
     });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    addEventListeners();
+    document.getElementById('invoice-form').addEventListener('submit', handleSubmit);
     validateRows(); 
 });
+
+
 
 async function handleSubmit(event) {
     event.preventDefault();
@@ -200,11 +227,11 @@ async function handleSubmit(event) {
     }
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        document.getElementById('emailError').textContent = 'Email is required invalid email format.l';
+        document.getElementById('emailError').textContent = 'Email is required.';
         isValid = false;
     }
 
-    if (!address || address.length < 1 || address.length > 50) {
+    if (!address || address.length < 3 || address.length > 10) {
         document.getElementById('addressError').textContent = 'Address is required.';
         isValid = false;
     }
@@ -243,7 +270,7 @@ async function handleSubmit(event) {
                         quantityError.textContent = data.error.reason || 'Unable to check product availability.';
                     } else if (data.stock < quantity) {
                         isValid = false;
-                        quantityError.textContent = `Only ${data.stock} units available.`;
+                        quantityError.textContent = Only `${data.stock} units available.`;
                     }
                 })
                 .catch(error => {
@@ -294,7 +321,17 @@ async function handleSubmit(event) {
 
         alert('Order placed successfully!');
         window.location.href = "customerlist.html";
-    } catch (error) {
+
+        document.getElementById('customerName').value="";
+        document.getElementById('purchase-date').value="";
+        document.getElementById('mobileNo').value="";
+        document.getElementById('email').value="";
+        document.getElementById('address').value="";
+        document.getElementById('gender').value="";
+    
+    }
+    
+    catch (error) {
         console.error('Error:', error);
 
         const formErrorDiv = document.getElementById('formError');
@@ -311,4 +348,7 @@ async function handleSubmit(event) {
             document.getElementById('emailError').textContent = ' Please enter a valid email';
         }
     }
+    
 }
+
+document.getElementById('invoice-form').addEventListener('submit', handleSubmit);
